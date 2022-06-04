@@ -1,14 +1,33 @@
 import React from 'react';
-import cities from '../data';
+import CardTemp from './CardTemp';
+import PropTypes from 'prop-types'
 
 
-
-export default function Card({cities}) {
+export default function Card({max, min, name, img, onClose}) {
   // acá va tu código
-  return(
-    <div>
-      <h1>{cities.name}</h1>
-      <p>{cities.min},{cities.max},{cities.img},{cities.onClose}</p>
-    </div>
-  )
+
+	function handleOnClose(){
+		if(typeof onClose === "function") onClose()
+	}
+
+	return(
+		<div>
+		<button onClick={handleOnClose}>X</button>
+		<span>{name}</span>
+		<CardTemp label="Min" value={min}></CardTemp>
+		<CardTemp label="Max" value={max}></CardTemp>
+		<img 
+			src={`http://openweathermap.org/img/wn/${img}@2x.png`} 
+			alt="icono del clima" 
+			/>
+		</div>
+	)
 };
+
+Card.propTypes = {
+	max: PropTypes.number,
+	min: PropTypes.number,
+	name: PropTypes.string,
+	img: PropTypes.string,
+	onClose: PropTypes.func,
+}
