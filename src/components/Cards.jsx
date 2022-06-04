@@ -10,10 +10,7 @@ export default function Cards(props) {
   // tip, podés usar un map
   return (
     <div>
-      {
-        cities.map((cities) =>
-          <Card name={cities.name} min={cities.min}max={cities.max} img={cities.img} onCLose={cities.onCLose} key={index}/> )
-      }
+        <Card />       
     </div>
-)
+    )
 };
